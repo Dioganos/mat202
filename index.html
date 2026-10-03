@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAT 202 — Sayısal Yöntemler Çalışma Sitesi</title>
+<style>
+:root{--bg:#f4f6f9;--fg:#14213d;--mut:#5b6577;--card:#fff;--bd:#d9dee7;--ac:#0f766e;--acbg:#e0f2ef;--ok:#15803d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151d;--fg:#e6ebf3;--mut:#9aa6b8;--card:#18202c;--bd:#2a3546;--ac:#4fd1c0;--acbg:#12312e;--ok:#4ade80}}
+:root[data-theme="dark"]{--bg:#10151d;--fg:#e6ebf3;--mut:#9aa6b8;--card:#18202c;--bd:#2a3546;--ac:#4fd1c0;--acbg:#12312e;--ok:#4ade80}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--card);box-shadow:0 1px 8px rgba(0,0,0,.08);padding:12px 20px;border-bottom:1px solid var(--bd);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+h1{font-size:1.05rem;margin:0;flex:1 1 220px}
+#pg{font-size:.85rem;color:var(--mut)}
+.bar{width:140px;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac);width:0}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;padding:20px;max-width:1320px;margin:0 auto}
+main{min-width:0}aside{max-height:calc(100vh - 92px);overflow:auto;position:sticky;top:72px;align-self:start}
+.vid{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.18)}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+h2{font-size:1.4rem;margin:4px 0 4px}.sub{color:var(--mut);font-size:.9rem;margin:0 0 10px}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button,.lnk{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer;text-decoration:none;transition:border-color .15s,background .15s}
+button:hover,.lnk:hover{border-color:var(--ac)}button.p{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;overflow:hidden}
+summary{padding:10px 12px;cursor:pointer;font-weight:600;font-size:.92rem}
+summary small{color:var(--mut);font-weight:400}
+.it{display:flex;gap:8px;align-items:center;width:100%;text-align:left;border:0;border-top:1px solid var(--bd);border-radius:0;padding:7px 12px;font-size:.88rem;background:none}.it:hover{background:var(--acbg)}
+.it.on{background:var(--acbg);color:var(--ac);font-weight:600}.it .c{width:16px;flex:none;color:var(--ok)}
+.note{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 24px 20px;font-family:Georgia,"Times New Roman",serif;line-height:1.65;max-width:78ch}
+.note h3{font-family:system-ui,sans-serif;font-size:1rem;margin:18px 0 4px}.note code,.note .f{font-family:ui-monospace,Consolas,monospace;font-size:.92em;background:var(--acbg);padding:1px 5px;border-radius:4px}
+.note .f{display:block;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre}
+.note table{border-collapse:collapse;display:block;overflow-x:auto}.note td,.note th{border:1px solid var(--bd);padding:4px 10px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;padding:12px;gap:16px}aside{position:static;max-height:none}}
+</style></head><body>
+<header><h1>MAT 202 — Sayısal Yöntemler</h1><span id="pg"></span><div class="bar"><i id="bi"></i></div></header>
+<div class="wrap"><main id="m"></main><aside id="s"></aside></div>
+<script>
+const S=(p,ids,n=1)=>ids.map((x,i)=>[p+' '+(i+n),x]);
+const W=[
+['1. Hafta · Hata analizi',[['Sayısal Analiz Nedir?','t69PeA210U8'],['Hata Kavramı ve Çeşitleri','wGvNOMdedrk'],['Mutlak Hata','S8H7kmFMULo'],['Bağıl Hata','KtXRpu6G6qc'],['Yuvarlama Hatası','Kj1tIKdHD-w'],['Çalışma: Doğruluk, hassasiyet, anlamlı basamak','#hata']]],
+['2. Hafta · Taylor, interpolasyon, ekstrapolasyon',[['Taylor ve Maclaurin Açılımları','NqCPeLclcys'],['Taylor Serilerini Bulma','tDY6XyI1TeE'],['Kesme Hatası','O6VIdgPebVo'],['İnterpolasyona Giriş','X1oYUZppIjI'],['Doğrusal İnterpolasyon','HYPGWUjzx6E'],...S('Doğrusal Örnek',['cQg8_TAfjns','wTA42kdj4mg']),['Eğrisel İnterpolasyon','gVlg06B9Fgo'],...S('Eğrisel Örnek',['srIPGm2KMiQ','P3izy-Cwy-I']),['Lagrange Polinomları','rR9mzBWXVfI'],...S('Lagrange Örnek',['Opb0jIvb10s','--gE0BwuciQ','p4ZR3oVrcl8','kCrEG6LgFsU','07xMWQj50Os']),['Çalışma: Ekstrapolasyon ve Richardson','#extra'],['Ek: Neville Metodu','22dxKeA8E6M'],...S('Ek: Neville Örnek',['cJQv8GVTRNw','NQ9q-BsMCFo','A_PzadzFb2k']),['Ek: Bolzano Teoremi','qBUG1wBPbhY'],['Ek: Ortalama Değer Teoremi','5LkxLs8MiMs']]],
+['3. Hafta · Sonlu farklar',[['Newton Polinomları, Bölünmüş Farklar: Giriş','8sr57I1zJQA'],['Bölünmüş Farklar Formülü','6iXs3byXOzo'],...S('Bölünmüş Farklar Örnek',['52uGSb-vvvQ','leWktEEbrT0','SJUDJ0wXNeY']),['Newton İnterpolasyon Polinomu','Pk3NaWEFRsw'],['İleri Farklar Formülü','jI_w88nIkqU'],...S('İleri Farklar Örnek',['5Tc-YWj_8KU','HV5xo8klTPo','WIAMXcCThsk']),['Geri Farklar Formülü','MFuKaLiuHso'],...S('Geri Farklar Örnek',['uiHY_stGtdI','_cnZGBgmZ5I','38WRO_uuoGQ']),['Merkezi Farklar (Stirling)','nGJ6snBFmQg'],...S('Merkezi Farklar Örnek',['ruOyM577XvU','ZoXnn8JNRJU'])]],
+['4. Hafta · Sayısal türev',[['Sayısal Türeve Giriş','q54_HhbMr4I'],['Üç Nokta Formülleri','EUodLr7SXMk'],['Beş Nokta Formülleri','J3BvMpuKzYw'],['İkinci Türev Orta Nokta','vBthLUp-5F0'],...S('Üç/Beş Nokta Örnek',['xaQZQFTsGc4','cLHKU_yFOIw','LzgzhxQcVZ4']),['Çalışma: Hata ve adım büyüklüğü etkisi','#turev']]],
+['5. Hafta · Sayısal integrasyon I',[['Sayısal İntegrasyon Kavramı','dwEZmv9YVU4'],['Yamuk Kuralı','YUgAWPFMYrM'],...S('Yamuk Örnek',['TRo91HxWbqU','kfpdR3CLHTI']),['Simpson 1/3','1al7Ov3BfJ4'],...S('Simpson 1/3 Örnek',['_x2quxqxuDo','8Wge9uNIexs']),['Simpson 3/8','r9NUTclKTao'],...S('Simpson 3/8 Örnek',['VFh4Fij6LRg','qXBekymaxYY']),['Çalışma: Newton-Cotes kapalı ve açık formüller','#nc']]],
+['6. Hafta · Sayısal integrasyon II',[['Çalışma: Legendre polinomları ve Gauss-Legendre','#gauss'],['İngilizce: Gauss-Legendre 1','UTVD3obsHuk'],['İngilizce: Gaussian-Legendre Quadrature','oKOsCvjTg3c'],['İngilizce: Gaussian Quadrature Giriş','Hu6yqs0R7GA']]],
+['7. Hafta · Matrisler ve lineer sistemler',[['Matris Temel Kavramları','OWF8nwZpTTU'],['Matris Çeşitleri','OBng_BSid4Y'],['Devrik','7Y_nm91IRJU'],['Matris İşlemleri','p0wu5mU4JDQ'],['Determinant','ndtNgoYqZtU'],['Denklem Sistemleri ve Matris Gösterimi','DJ7DoGoU9E0'],['Elementer Satır İşlemleri','HPANC4V4FkA'],['Gauss Yok Etme','APaxPQTy8HY'],['Gauss-Jordan','SV682ScLkHQ'],['Sayısal Çözüm Teknikleri: Genel Bakış','eubUCZLftTk'],['Gauss: Basit Pivotlama','DQP8TfrBTjI'],['Gauss: Kısmi Pivotlama','CFWeBdkjM_0'],['Ek: PA=LU','Dqhw6AY_PAk'],...S('Ek: PA=LU Örnek',['roUXOhymyj8','N0EZmWJX2-0','ekVM0lzylHs']),['Ek: PA=LU ile Sistem Çözme','I7ZOVbvCdKw'],['Ek: LU Ayrışımı','Nd2UHu-9K3w'],['Ek: LU Örnek 1 (uzun yol)','uf_KyDaPJbI'],['Ek: LU Örnek 2 (kısa yol)','nqSp6hZkc5M'],['Ek: LU ile Sistem Çözme','_k_Kiji71Gk'],['Ek: Jacobi','De3hsj38SQg'],['Ek: Jacobi Örnek','Aov9Yu3RxeU'],['Ek: Gauss-Seidel','TJQ5VApvprw'],['Ek: Gauss-Seidel Örnek','x0UUmrsEqfM']]],
+['8. Hafta · Özdeğer problemleri',[['Özdeğer ve Özvektör: Giriş','M7_Uj42CDq4'],['2×2 Özdeğer/Özvektör','0b8QoN_26jk'],['3×3, 3 Farklı Özdeğer','-8x1TmGxXic'],['3×3, Çift Katlı Özdeğer','QnIBq-VsSc8'],['3×3, 3 Özdeğer Aynı','HVfdrzn-BgM'],['Algebraic Multiplicity','EjC5cfOV4WA'],['Geometric Multiplicity','41Jn56uyho4'],...S('Özdeğer Soru',['JVJToGdbBoI','QpX_eafRf5A','d59Y4684dr4','7mBh48NIiaA','v9GpJSlQqHY','dsskcapp3t4','K8-vKiD_dmw','NDBU1domOQg','0DIbxN9MtxQ','W7OGmbmwjyA','QlRmwum2qV4']),['Çalışma: Özdeğerin sayısal yöntemi (Kuvvet yöntemi)','#power']]],
+['9. Hafta · Lineer olmayan denklemler',[['Lineer Olmayan Denklem Nedir?','_5pSoqYr5uA'],['Çözüm Durumları','3ECo58Gru6k'],['Tekrarlama (Fixed Point)','El25xqWRlN4'],['Fixed Point: Durma Koşulları','eBEeRLB75TY'],...S('Fixed Point Örnek',['jJvea8oO4Sc','f-qYxwL1V9k','obP6V4L1fH8','8hN91X1nmCk']),['Newton-Raphson','I7zpcF_kmew'],...S('Newton-Raphson Örnek',['ePLwYAnGQOw','EXVW1AN2wGI']),['İki Fonksiyonun Kesişimi (NR)','Te09eDWbgyw'],['Regula-Falsi','BeOCLDTk9cI'],['Regula-Falsi: Durma Koşulları','9PDG6Mv21-Q'],...S('Regula-Falsi Örnek',['6HU7Z0ygqCk','dfyyj6cHGyo']),['Ek: İkiye Bölme','6IMOAUfV1es'],['Ek: Bisection Durma Koşulları','qrRKkbtdNbY'],['Ek: Minimum İterasyon Sayısı','CGko1TkFMBU'],...S('Ek: Bisection Örnek',['_Iia25n1_Gc','rE81rCrKtHc']),['Ek: Kiriş (Secant)','PVNU3BwxSPE'],...S('Ek: Kiriş Örnek',['nBAoDpNdxI0','6372CIkm1Z4']),['Ek: NR Denklem Sistemleri','stuRq5B_e7M'],...S('Ek: NR Sistem Örnek',['CMn-1qUUTu8','TaSHUZCKnC0'])]],
+['10. Hafta · En küçük kareler, regresyon, korelasyon',[['En Küçük Kareler Metodu','CXk30OZwK-Y'],['En Küçük Kareler ile Eğri Uydurma','XBG2ZQCpm9k'],...S('En Küçük Kareler Soru',['XdNG8yo-rOA','h4UDhBKX6Ls','YdJQRr_lUv8']),['Bir Veri Grubuna Eğri Uydurma','tM4Z4jtGu9A'],['Doğru Uydurma','DOPSik_WHgw'],['Parabol Uydurma','frTIfua4PNA'],['Üs Uydurma','NiCKqisSnWk'],['Üstel Uydurma','DDfWv-i2Sgk'],['Korelasyon Katsayısı Nedir?','JWESiyJd9HY'],['Veri Çifti İçin Korelasyon','0fBi0_It1N8'],['Korelasyon Özellikleri','GG3lgWrby-w'],['Korelasyon Örnek 1','c3BgFw_FZCM'],['Korelasyon Örnek 2','LlEvrfjQXss'],['Korelasyon Örnek 4','qAhVz7OWCrs'],['Çalışma: Pürüzsüzleştirme ve korelasyon özeti','#smooth']]],
+['11. Hafta · Hermite ve spline',[['Çalışma: Hermite interpolasyonu','#hermite'],['Kübik Spline','Bdw1F1x6GaM'],...S('Kübik Spline Örnek',['lKo9ND8_1Z8','p39NWFkq0X4','u4PV5hfuyxU'])]],
+['12. Hafta · Taylor ve Picard (ADD)',[['ADD Sayısal Çözümlere Giriş','AgjDi-e10hs'],['Taylor Serisi Yöntemi','C3mogvC4p4Y'],...S('Taylor Örnek',['aNZP_uzX9NM','Usn6pLAjZ1s','jwqzvfwHuZs']),['Picard İterasyon','bbWye4wzt5k'],...S('Picard Örnek',['zb8QirvpdJo','DK_34JuCzCo','6ebKwcq00XU','laPvnHtfY-s'])]],
+['13. Hafta · Euler yöntemi',[['Euler Metodu','Mf1qeE0uK0I'],...S('Euler Örnek',['8ac4-AK4H0w','dxGAET-hJQA','ZXTpcLKjvHw'])]],
+['14. Hafta · Runge-Kutta ve tekrar',[['Runge-Kutta Giriş','z3aAU99e9Oc'],['RK2','IzbhtWuji90'],['Heun','1bUtP9a7gH8'],['Orta Nokta','28F6NR0dX3A'],['Ralston','Q596q-_wGCg'],['RK3','nfShaxzTaEE'],['RK4','fmeD7RA-DyA'],...S('Vize/Final Sorusu',['y8mf_Ogc30U','q9Rq4DV69ME','30Rjg4LISI4','Of1E9upoCIw','Q2ndmW_tOAw','-2GkkIBCOXs','qYFeE9WYytw','H5jX3vAq5y0','TWmAp1R1ZNk','THl4V7K_M9Q','P3NGqsMtY1k','qz4O2nOesS0','8Jm_3t6dTJg','e1tI9G49A14','-a5WX3mFwpY','G8XHRtqERy4','6G_equocjOg'])]]
+];
+const N={
+hata:`<h3>Doğruluk ve hassasiyet</h3><p><b>Doğruluk (accuracy):</b> sonucun gerçek değere yakınlığı. <b>Hassasiyet (precision):</b> tekrarlı hesapların birbirine yakınlığı, ya da sayının kaç basamakla verildiği. Hedef tahtası: oklar birbirine yakın ama merkezden uzaksa hassas ama doğru değil.</p><h3>Hata türleri</h3><span class="f">Mutlak hata   Eₜ = |gerçek − yaklaşık|
+Bağıl hata    εᵣ = Eₜ / |gerçek|   (×100 ile yüzde)</span><h3>Anlamlı basamak</h3><p>Soldan ilk sıfırdan farklı rakamdan başlayıp güvenilir rakamların sayısıdır. <code>0.00314</code> → 3, <code>3.140</code> → 4, <code>3100</code> → belirsiz (bilimsel yazım gerekir).</p><span class="f">n anlamlı basamak için durdurma ölçütü:
+εₛ = (0.5 × 10^(2−n)) %    →  |εₐ| < εₛ ise dur</span><p><b>Örnek:</b> π ≈ 3.14159 yerine 3.14: Eₜ ≈ 0.00159, εᵣ ≈ 0.000507 = %0.0507.</p>`,
+extra:`<h3>İnterpolasyon ve ekstrapolasyon</h3><p>İnterpolasyon veri aralığının <b>içinde</b>, ekstrapolasyon <b>dışında</b> tahmin yapar. Aynı polinom kullanılabilir ama aralık dışında hata hızla büyür, bu yüzden ekstrapolasyon daha risklidir.</p><h3>Richardson ekstrapolasyonu</h3><p>Aynı yöntemi h ve h/2 ile uygula. Hata O(h<sup>p</sup>) ise:</p><span class="f">R = ( 2^p · D(h/2) − D(h) ) / ( 2^p − 1 )
+Merkezi fark (p=2):  R = (4·D(h/2) − D(h)) / 3
+Yamuk → Simpson:      (4·T(h/2) − T(h)) / 3     (Romberg'in ilk adımı)</span><p><b>Örnek:</b> f=eˣ, x=0, merkezi fark. D(0.2)=1.00668, D(0.1)=1.00167. R=(4·1.00167−1.00668)/3=<b>1.00000</b> (gerçek değer 1).</p>`,
+turev:`<h3>Formüller</h3><span class="f">İleri:    (f(x+h) − f(x)) / h          hata O(h)
+Geri:     (f(x) − f(x−h)) / h          hata O(h)
+Merkezi:  (f(x+h) − f(x−h)) / 2h       hata O(h²)
+f''(x) ≈  (f(x+h) − 2f(x) + f(x−h)) / h²   hata O(h²)
+5 nokta:  (−f(x+2h)+8f(x+h)−8f(x−h)+f(x−2h)) / 12h   hata O(h⁴)</span><h3>Adım büyüklüğü h'nin etkisi</h3><ul><li><b>Kesme hatası</b> h ile küçülür (h², h⁴ ...).</li><li><b>Yuvarlama hatası</b> yaklaşık ε/h gibi büyür, çünkü birbirine çok yakın iki sayıyı çıkarırsın.</li><li>Toplam hatanın bir <b>en iyi h</b> değeri vardır. h'yi çok küçültmek sonucu kötüleştirir. Aşırı örnek: h=10⁻¹⁶ ile (eˣ)'in türevi 0 çıkar, çünkü f(x+h)=f(x) olur.</li></ul><p><b>Pratik kural:</b> h'yi yarıya böl, sonuç değişmiyorsa dur. Hata tahmini |D(h) − D(h/2)|. İyileştirmek için Richardson kullan (2. hafta notu).</p>`,
+nc:`<h3>Kapalı formüller (uç noktalar dahil)</h3><span class="f">n=1 Yamuk:       (h/2)(f₀+f₁)
+n=2 Simpson 1/3: (h/3)(f₀+4f₁+f₂)
+n=3 Simpson 3/8: (3h/8)(f₀+3f₁+3f₂+f₃)
+n=4 Boole:       (2h/45)(7f₀+32f₁+12f₂+32f₃+7f₄)</span><h3>Açık formüller (uç noktalar kullanılmaz)</h3><p><code>h = (b−a)/(n+2)</code>, düğümler <code>xᵢ = a+(i+1)h</code>, i=0..n.</p><span class="f">n=0 (orta nokta): 2h·f₀
+n=1:              (3h/2)(f₀+f₁)
+n=2 (Milne):      (4h/3)(2f₀ − f₁ + 2f₂)
+n=3:              (5h/24)(11f₀ + f₁ + f₂ + 11f₃)</span><p>Açık formüller integral uçlarında f tanımsızsa işe yarar. Genelde kapalılardan daha az doğrudur. Yüksek n'de negatif ağırlıklar çıkar, bu yüzden pratikte <b>birleşik</b> (composite) kurallar kullanılır.</p><h3>Birleşik kurallar</h3><span class="f">Yamuk:       (h/2)[f₀ + 2(f₁+…+fₙ₋₁) + fₙ]
+Simpson 1/3: (h/3)[f₀ + 4(tek) + 2(çift) + fₙ]    n çift olmalı</span><p><b>Hata derecesi:</b> yamuk O(h²), Simpson O(h⁴).</p><p><b>Örnek:</b> ∫₀¹x²dx, Simpson 1/3, h=0.5: (0.5/3)(0+4·0.25+1) = <b>1/3</b> (tam).</p>`,
+gauss:`<h3>Legendre polinomları ([−1,1] üzerinde ortogonal)</h3><span class="f">P₀=1   P₁=x   P₂=(3x²−1)/2   P₃=(5x³−3x)/2</span><h3>Gauss-Legendre kuadratürü</h3><p>n noktalı formülün düğümleri Pₙ'nin kökleridir. Derecesi 2n−1'e kadar olan polinomları <b>tam</b> integre eder.</p><span class="f">∫₋₁¹ f(t)dt ≈ Σ wᵢ f(tᵢ)
+
+n=2:  t = ±1/√3 (±0.57735)             w = 1, 1
+n=3:  t = 0, ±√(3/5) (±0.77460)        w = 8/9, 5/9, 5/9</span><h3>[a,b] aralığına dönüşüm</h3><span class="f">x = (b−a)/2 · t + (a+b)/2        dx = (b−a)/2 dt
+∫ₐᵇ f(x)dx = (b−a)/2 · Σ wᵢ f(x(tᵢ))</span><p><b>Örnek:</b> ∫₁³x²dx, n=2. (b−a)/2=1, x=t+2 → x=2.57735 ve 1.42265. f toplamı 6.64273+2.02394=<b>8.66667</b> = 26/3 (tam, çünkü derece ≤ 3).</p>`,
+power:`<h3>Kuvvet (power) yöntemi</h3><p>Mutlak değerce <b>en büyük</b> özdeğeri ve özvektörünü bulur.</p><ol><li>Başlangıç x⁰ seç (ör. [1,1,…]).</li><li>y = A·xᵏ hesapla.</li><li>λ ≈ y'nin mutlak en büyük bileşeni. xᵏ⁺¹ = y/λ (normalize).</li><li>λ yakınsayana kadar tekrarla.</li></ol><p><b>Örnek:</b> A=[[2,1],[1,2]], x⁰=[1,0]. y=[2,1] → λ=2, x=[1,0.5]. y=[2.5,2] → λ=2.5, x=[1,0.8]. y=[2.8,2.6] → λ=2.8 ... λ→<b>3</b>, v→[1,1] (diğer özdeğer 1).</p><h3>Notlar</h3><ul><li>Yakınsama hızı |λ₂/λ₁|. İki büyük özdeğer birbirine yakınsa yavaş.</li><li>En küçük özdeğer: A⁻¹'e uygula (ters kuvvet yöntemi).</li><li>Belirli bir μ'ye en yakın özdeğer: (A−μI)⁻¹ ile uygula (kaydırmalı).</li><li>Hepsini bulmak için QR iterasyonu kullanılır. Hocanın hangisini işlediğine ders notundan bak.</li></ul>`,
+smooth:`<h3>Neden pürüzsüzleştirme?</h3><p>Deneysel veride gürültü var. İnterpolasyon gürültüyü de aynen geçirir, regresyon ve pürüzsüzleştirme ise süzer.</p><h3>Yöntemler</h3><span class="f">3 nokta hareketli ortalama:  yᵢ' = (yᵢ₋₁ + yᵢ + yᵢ₊₁) / 3
+Ağırlıklı:                    yᵢ' = (yᵢ₋₁ + 2yᵢ + yᵢ₊₁) / 4
+5 nokta, 2. derece yerel polinom (Savitzky–Golay):
+                              yᵢ' = (−3yᵢ₋₂ + 12yᵢ₋₁ + 17yᵢ + 12yᵢ₊₁ − 3yᵢ₊₂) / 35</span><p>Uçlarda pencere eksik kalır, o noktalar ya atlanır ya da tek taraflı formül kullanılır. Alternatif: düşük dereceli polinom regresyonu (en küçük kareler).</p><h3>Korelasyon</h3><span class="f">r = (nΣxy − ΣxΣy) / √[(nΣx² − (Σx)²)(nΣy² − (Σy)²)]    −1 ≤ r ≤ 1</span><p>|r|→1 güçlü doğrusal ilişki, r≈0 doğrusal ilişki yok. R² = r² regresyonun varyansı açıklama oranıdır. Korelasyon nedensellik göstermez.</p>`,
+hermite:`<h3>Hermite interpolasyonu</h3><p>Hem <b>değeri</b> hem <b>türevi</b> uyduran polinom: P(xᵢ)=f(xᵢ), P'(xᵢ)=f'(xᵢ). n+1 nokta → derece ≤ 2n+1.</p><h3>Yöntem 1: Katsayı yöntemi</h3><p>İki nokta, 4 koşul → P=ax³+bx²+cx+d, koşulları yaz, çöz.</p><p><b>Örnek:</b> f(0)=1, f'(0)=0, f(1)=0, f'(1)=−2. d=1, c=0, a+b=−1, 3a+2b=−2 → a=0, b=−1. <code>P(x)=1−x²</code>.</p><h3>Yöntem 2: Bölünmüş farklar (her nokta iki kez)</h3><span class="f">z₀=z₁=x₀,  z₂=z₃=x₁    f[zᵢ,zᵢ₊₁]=f'(xᵢ) (aynı nokta olunca)
+H(x)=f₀ + f'₀(x−x₀) + f[z₀,z₁,z₂](x−x₀)² + f[z₀..z₃](x−x₀)²(x−x₁)</span><p>Aynı örnek: f[z₁,z₂]=−1, f[z₀,z₁,z₂]=−1, f[z₁,z₂,z₃]=−1, f[z₀..z₃]=0 → H=1−x² ✓.</p><h3>Hata</h3><span class="f">f(x) − H(x) = f⁽²ⁿ⁺²⁾(ξ)/(2n+2)! · Π(x−xᵢ)²</span><p>Programdaki "tiriz eğrileri" muhtemelen <b>spline</b> demek. Aşağıdaki spline videolarını izle.</p>`
+};
+const flat=[];W.forEach((w,wi)=>w[1].forEach(it=>flat.push({wi,n:it[0],id:it[1]})));
+let cur=0,done={};
+try{done=JSON.parse(localStorage.getItem('m202d')||'{}');cur=Math.min(+(localStorage.getItem('m202c')||0),flat.length-1)}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem('m202d',JSON.stringify(done));localStorage.setItem('m202c',cur)}catch(e){}}
+function go(i){cur=Math.max(0,Math.min(flat.length-1,i));save();draw()}
+function draw(){
+ const v=flat[cur],w=W[v.wi],note=v.id[0]==='#';
+ let h='<h2>'+v.n+'</h2><p class="sub">'+w[0]+' · '+(cur+1)+'/'+flat.length+'</p>';
+ if(note)h+='<div class="note">'+N[v.id.slice(1)]+'</div>';
+ else h+='<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/'+v.id+'?rel=0&modestbranding=1&playsinline=1" title="'+v.n+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>';
+ h+='<div class="ctl"><button id="pv">Önceki</button><button class="p" id="nx">'+(done[v.id+v.n]?'Sonraki':'Bitti, sonrakine geç')+'</button>';
+ if(!note)h+='<a class="lnk" target="yt" rel="noopener" href="https://youtu.be/'+v.id+'">YouTube\'da aç</a>';
+ const q=w[1].filter(t=>t[1][0]!=='#').map(t=>t[1]).slice(0,50).join(',');
+ h+='<a class="lnk" target="yt" rel="noopener" href="https://www.youtube.com/watch_videos?video_ids='+q+'">Bu haftanın tüm videolarını sırayla oynat</a>';
+ $('m').innerHTML=h+'</div>';
+ $('pv').onclick=()=>go(cur-1);
+ $('nx').onclick=()=>{done[v.id+v.n]=1;go(cur+1)};
+ let s='',k=0;
+ W.forEach((x,wi)=>{const nd=x[1].filter(t=>done[t[1]+t[0]]).length;
+  s+='<details'+(wi===v.wi?' open':'')+'><summary>'+x[0]+' <small>('+nd+'/'+x[1].length+')</small></summary>';
+  x[1].forEach(t=>{s+='<button class="it'+(k===cur?' on':'')+'" data-k="'+k+'"><span class="c">'+(done[t[1]+t[0]]?'✓':'')+'</span>'+t[0]+'</button>';k++});
+  s+='</details>'});
+ $('s').innerHTML=s;
+ $('s').querySelectorAll('.it').forEach(b=>b.onclick=()=>go(+b.dataset.k));
+ const nd=Object.keys(done).length;
+ $('pg').textContent=nd+' / '+flat.length+' tamamlandı';$('bi').style.width=(100*nd/flat.length)+'%';
+}
+document.addEventListener('keydown',e=>{if(e.target.tagName==='IFRAME')return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+draw();
+</script></body></html>
