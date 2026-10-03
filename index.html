@@ -11,6 +11,9 @@ body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-app
 header{position:sticky;top:0;z-index:5;background:var(--card);box-shadow:0 1px 8px rgba(0,0,0,.08);padding:12px 20px;border-bottom:1px solid var(--bd);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 h1{font-size:1.05rem;margin:0;flex:1 1 220px}
 #pg{font-size:.85rem;color:var(--mut)}
+.sr{position:relative;flex:1 1 170px;max-width:300px}#q{font:inherit;font-size:.88rem;width:100%;padding:6px 10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg)}#q:hover,#q:focus{border-color:var(--ac)}#q::placeholder{color:var(--mut)}
+#sl{display:none;position:absolute;top:calc(100% + 4px);left:0;width:100%;min-width:250px;max-height:320px;overflow:auto;background:var(--card);border:1px solid var(--bd);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18)}#sl.on{display:block}
+#sl div{padding:7px 12px;font-size:.88rem;cursor:pointer;border-top:1px solid var(--bd)}#sl div:first-child{border-top:0}#sl div.h,#sl div:hover{background:var(--acbg)}#sl small{display:block;color:var(--mut)}#sl .e{color:var(--mut);cursor:default}
 .bar{width:140px;height:6px;background:var(--bd);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac);width:0}
 .wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;padding:20px;max-width:1320px;margin:0 auto}
 main{min-width:0}aside{max-height:calc(100vh - 92px);overflow:auto;position:sticky;top:72px;align-self:start}
@@ -31,7 +34,7 @@ summary small{color:var(--mut);font-weight:400}
 .note table{border-collapse:collapse;display:block;overflow-x:auto}.note td,.note th{border:1px solid var(--bd);padding:4px 10px}
 @media(max-width:900px){.wrap{grid-template-columns:1fr;padding:12px;gap:16px}aside{position:static;max-height:none}}
 </style></head><body>
-<header><h1>MAT 202 — Sayısal Yöntemler</h1><span id="pg"></span><div class="bar"><i id="bi"></i></div></header>
+<header><h1>MAT 202 — Sayısal Yöntemler</h1><div class="sr"><input id="q" type="search" placeholder="Konu ara…  ( / )" autocomplete="off" aria-label="Konu ara"><div id="sl"></div></div><span id="pg"></span><div class="bar"><i id="bi"></i></div></header>
 <div class="wrap"><main id="m"></main><aside id="s"></aside></div>
 <script>
 const S=(p,ids,n=1)=>ids.map((x,i)=>[p+' '+(i+n),x]);
@@ -112,6 +115,20 @@ function draw(){
  const nd=Object.keys(done).length;
  $('pg').textContent=nd+' / '+flat.length+' tamamlandı';$('bi').style.width=(100*nd/flat.length)+'%';
 }
-document.addEventListener('keydown',e=>{if(e.target.tagName==='IFRAME')return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+const nm=t=>t.toLocaleLowerCase('tr').replace(/ı/g,'i').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+flat.forEach(f=>f.t=nm(f.n+' '+W[f.wi][0]+' '+(f.id[0]==='#'?(N[f.id.slice(1)]||'').replace(/<[^>]*>/g,' '):'')));
+let sr=[],hl=0;const q=$('q'),sl=$('sl');
+function sc(){sl.classList.remove('on');hl=0}
+function sh(){sl.querySelectorAll('div').forEach((d,i)=>d.classList.toggle('h',i===hl));const d=sl.children[hl];if(d&&d.scrollIntoView)d.scrollIntoView({block:'nearest'})}
+function sf(){const w=nm(q.value).split(/\s+/).filter(Boolean);if(!w.length){sc();return}
+ sr=[];for(let k=0;k<flat.length&&sr.length<10;k++)if(w.every(x=>flat[k].t.includes(x)))sr.push(k);
+ hl=0;sl.innerHTML=sr.length?sr.map(k=>'<div data-k="'+k+'">'+flat[k].n+'<small>'+W[flat[k].wi][0]+'</small></div>').join(''):'<div class="e">Sonuç yok</div>';
+ sl.classList.add('on');sh()}
+function sp(k){q.value='';sc();q.blur();go(k)}
+q.oninput=sf;q.onfocus=()=>{if(q.value)sf()};
+q.onkeydown=e=>{if(e.key==='Escape')sc();else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(sr.length&&sl.classList.contains('on')){hl=(hl+(e.key==='ArrowDown'?1:sr.length-1))%sr.length;sh()}}else if(e.key==='Enter'&&sl.classList.contains('on')&&sr.length)sp(sr[hl])};
+sl.onclick=e=>{const d=e.target.closest('div[data-k]');if(d)sp(+d.dataset.k)};
+document.addEventListener('click',e=>{if(!e.target.closest('.sr'))sc()});
+document.addEventListener('keydown',e=>{if(e.target.tagName==='IFRAME'||e.target.tagName==='INPUT')return;if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();q.focus();return}if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
 draw();
 </script></body></html>
